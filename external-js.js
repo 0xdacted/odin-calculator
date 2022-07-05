@@ -1,3 +1,23 @@
+let operators = document.querySelectorAll("[data-operator]");
+let numbers = document.querySelectorAll("[data-number]");
+
+    const NUMBERS = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9'
+    ]
+    const OPERATORS = [
+    "+", "-", "*", '/'
+    ]
+
+operators.forEach(operator => {operator.addEventListener('click', e => {
+let selectOperator = operator.dataset.selection
+const operator =  OPERATORS.find(operator => operator === selectOperator)})});
+
+numbers.forEach(number => {number.addEventListener('click', e => {
+    let selectNumber = number.dataset.selection
+    const number = NUMBERS.find(number => number === select)
+})})
+
+
 const add = (a,b) => { 
     return a + b;
   };
@@ -14,18 +34,8 @@ const divide = (a,b) => {
     return a / b;
     };
 
-
-    let operators = document.querySelectorAll("[data-operator]");
-
-    const OPERATORS = [
-    "+", "-", "*", '/'
-    ]
-
-
 const operate = (a, operator, b) => {
-    operators.forEach(operator => {operator.addEventListener('click', e => {
-    let select = operator.dataset.selection
-    const operator =  OPERATORS.find(operator => operator === select)
+  
     switch(operator) {
         case '+':
             return add(a,b)
@@ -43,5 +53,4 @@ const operate = (a, operator, b) => {
             return divide(a,b)
             break;
     }
-});
-})}
+}
