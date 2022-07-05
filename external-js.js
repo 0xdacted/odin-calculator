@@ -3,14 +3,9 @@ const numberButtons = document.querySelectorAll("[data-number]");
 const equalsButton = document.getElementById('equalsBtn');
 const display = document.getElementById('display');
 const clearButton = document.getElementById('clear');
+const operationScreen = document.getElementById('operationScreen');
 
 
-const NUMBERS = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9'
-    ];
-const OPERATORS = [
-    "+", "-", "*", '/'
-    ]
 
 const add = (a,b) => { 
     return a + b;
@@ -28,38 +23,43 @@ const divide = (a,b) => {
     return a / b;
     };
 
-const operate = () => {
-const inputs = display.textContent
+const selectOperation = () => {
+}
+
+const operate = (operator, a, b) => {
+a = Number(a);
+b = Number(b);
 
     switch(operator) {
         case '+':
-            return add(a,b)
-            break;
+             return add(a,b)
             
         case '-':
             return subtract(a,b)
-            break;
-        
+
         case '*':
             return multiply(a,b)
-            break;
 
         case '/':
-            return divide(a,b)
-            break;
+            if (b === 0) return null
+            else return divide(a,b)
     }
 }
 
-const clear = () => { 
+
+function clear() { 
     display.textContent = '';
+    operationScreen.textContent = '';
   };
 
 operatorButtons.forEach(button => {button.addEventListener('click', e => {
-    display.append(button.textContent);
+    operationScreen.append(button.textContent);
+    selectOperation;
 })});
 
 numberButtons.forEach(button => {button.addEventListener('click', e => {
-    display.append(button.textContent);
+        display.append(button.textContent);
+    
 })})
 
 equalsButton.addEventListener('click', operate)
