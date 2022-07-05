@@ -1,3 +1,7 @@
+let firstOperand = '';
+let secondOperand = '';
+let currentOperation = null;
+
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const equalsButton = document.getElementById('equalsBtn');
@@ -5,26 +9,25 @@ const display = document.getElementById('display');
 const clearButton = document.getElementById('clear');
 const operationScreen = document.getElementById('operationScreen');
 
-
-
-const add = (a,b) => { 
-    return a + b;
-  };
-
-const subtract = (a,b) => {
-	return a - b;
-};
-
-const multiply = (a,b) => {
-    return a * b;
-    };
-
-const divide = (a,b) => {
-    return a / b;
-    };
-
-const selectOperation = () => {
+const appendNumber = (number) => {
+    display.textContent += number;
 }
+
+
+const selectOperation = (sign) => {
+    operationScreen.append(display.textContent);
+    operationScreen.append(sign);
+    firstOperand += display.textContent;
+    currentOperation = sign;
+    clear();
+}
+
+const evaluate = () => {
+    secondOperand = display.textContent;
+    display.textContent = operate(currentOperation, firstOperand, secondOperand)
+    operationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+    }
+
 
 const operate = (operator, a, b) => {
 a = Number(a);
@@ -49,20 +52,38 @@ b = Number(b);
 
 function clear() { 
     display.textContent = '';
-    operationScreen.textContent = '';
   };
 
-operatorButtons.forEach(button => {button.addEventListener('click', e => {
-    operationScreen.append(button.textContent);
-    selectOperation;
-})});
+function clearAll() {
+    display.textContent = '';
+    operationScreen.textContent = '';
+    firstOperand = '';
+    secondOperand = '';
+    currentOperation = null;
+}
 
-numberButtons.forEach(button => {button.addEventListener('click', e => {
-        display.append(button.textContent);
+
+const add = (a,b) => { 
+    return a + b;
+  };
+
+const subtract = (a,b) => {
+	return a - b;
+};
+
+const multiply = (a,b) => {
+    return a * b;
+    };
+
+const divide = (a,b) => {
+    return a / b;
+    };
+
+
+operatorButtons.forEach(button => {button.addEventListener('click', () => selectOperation(button.textContent))});
     
-})})
-
-equalsButton.addEventListener('click', operate)
-
-clearButton.addEventListener('click', clear)
-
+numberButtons.forEach(button => {button.addEventListener('click', () => appendNumber(button.textContent))});
+    
+equalsButton.addEventListener('click', evaluate)
+    
+clearButton.addEventListener('click', clearAll)
