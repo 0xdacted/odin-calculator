@@ -26,10 +26,13 @@ const selectOperation = (sign) => {
 const evaluate = () => {
     if (currentOperation === null) return
     secondOperand = display.textContent;
-    display.textContent = operate(currentOperation, firstOperand, secondOperand)
+    display.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand))
     operationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
     }
 
+const roundResult = (number) => {
+    return Math.round(number * 1000) / 1000
+}
 
 const operate = (operator, a, b) => {
 a = Number(a);
