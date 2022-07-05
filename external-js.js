@@ -1,21 +1,27 @@
-let operators = document.querySelectorAll("[data-operator]");
-let numbers = document.querySelectorAll("[data-number]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
+const numberButtons = document.querySelectorAll("[data-number]");
+const equalsButton = document.querySelector('equalsBtn');
 
-    const NUMBERS = [
+const NUMBERS = [
     '1', '2', '3', '4', '5', '6', '7', '8', '9'
-    ]
-    const OPERATORS = [
+    ];
+const OPERATORS = [
     "+", "-", "*", '/'
     ]
 
-operators.forEach(operator => {operator.addEventListener('click', e => {
-let selectOperator = operator.dataset.selection
-const operator =  OPERATORS.find(operator => operator === selectOperator)})});
+const DISPLAY = []
 
-numbers.forEach(number => {number.addEventListener('click', e => {
-    let selectNumber = number.dataset.selection
-    const number = NUMBERS.find(number => number === select)
+operatorButtons.forEach(button => {button.addEventListener('click', e => {
+    DISPLAY.push(button.textContent);
+})});
+
+numberButtons.forEach(button => {button.addEventListener('click', e => {
+    DISPLAY.push(button.textContent);
 })})
+
+equalsButton.addEventListener('click', e => {
+    operate(DISPLAY);
+})
 
 
 const add = (a,b) => { 
