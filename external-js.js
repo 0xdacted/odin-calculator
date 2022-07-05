@@ -15,14 +15,16 @@ const appendNumber = (number) => {
 
 
 const selectOperation = (sign) => {
+    if (currentOperation !== null) evaluate();
     operationScreen.append(display.textContent);
     operationScreen.append(sign);
-    firstOperand += display.textContent;
+    firstOperand = display.textContent;
     currentOperation = sign;
     clear();
 }
 
 const evaluate = () => {
+    if (currentOperation === null) return
     secondOperand = display.textContent;
     display.textContent = operate(currentOperation, firstOperand, secondOperand)
     operationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
@@ -52,6 +54,7 @@ b = Number(b);
 
 function clear() { 
     display.textContent = '';
+    
   };
 
 function clearAll() {
