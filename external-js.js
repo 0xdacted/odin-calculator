@@ -6,6 +6,10 @@ const add = (a,b) => {
 	return parseInt(a - b);
 };
 
-const multiply = (input) => {
+const multiply = (a,b) => {
     return parseInt(a * b);
+    };
+
+const divide = (a,b) => {
+    return parseInt(a / b);
     };
