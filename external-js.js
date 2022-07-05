@@ -2,6 +2,8 @@ const operatorButtons = document.querySelectorAll("[data-operator]");
 const numberButtons = document.querySelectorAll("[data-number]");
 const equalsButton = document.getElementById('equalsBtn');
 const display = document.getElementById('display');
+const clearButton = document.getElementById('clear');
+
 
 const NUMBERS = [
     '1', '2', '3', '4', '5', '6', '7', '8', '9'
@@ -27,7 +29,7 @@ const divide = (a,b) => {
     };
 
 const operate = () => {
-
+const inputs = display.textContent
 
     switch(operator) {
         case '+':
@@ -48,6 +50,10 @@ const operate = () => {
     }
 }
 
+const clear = () => { 
+    display.textContent = '';
+  };
+
 operatorButtons.forEach(button => {button.addEventListener('click', e => {
     display.append(button.textContent);
 })});
@@ -57,3 +63,6 @@ numberButtons.forEach(button => {button.addEventListener('click', e => {
 })})
 
 equalsButton.addEventListener('click', operate)
+
+clearButton.addEventListener('click', clear)
+
